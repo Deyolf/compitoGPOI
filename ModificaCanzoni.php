@@ -131,6 +131,10 @@
         .card {
             padding: 40px;
         }
+
+        .invalid {
+            border: 2px solid red;
+        }
     </style>
 </head>
 
@@ -149,26 +153,27 @@
                 </div>
                 <div class="mb-3">
                     <label for="Indirizzo" class="form-label">Orario</label>
-                    <input type="text" class="form-control" id="orario" name="orario" required>
+                    <input type="text" placeholder="hh:mm:ss" class="form-control" id="orario" name="orario" required
+                        onchange="validateTimeFormat(this)">
                 </div>
                 <div class="mb-3">
                     <label for="cantante" class="form-label">Cantante</label>
                     <select class="form-control" name="cantante" id="cantante" required>
                         <option value="" disabled selected>Seleziona un cantante</option>
                         <?php
-                            require_once("connection.php");
-                            
-                            $result = $conn->query("SELECT id_cantante, nome, cognome FROM cantante");
+                        require_once("connection.php");
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . htmlspecialchars($row["id_cantante"]) . "'>" . 
-                                        htmlspecialchars($row["nome"] . " " . $row["cognome"] ." - " . $row["id_cantante"]) . 
-                                        "</option>";
-                                }
-                            } else {
-                                echo "<option value='' disabled>Nessun cantante trovato</option>";
+                        $result = $conn->query("SELECT id_cantante, nome, cognome FROM cantante");
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<option value='" . htmlspecialchars($row["id_cantante"]) . "'>" .
+                                    htmlspecialchars($row["nome"] . " " . $row["cognome"] . " - " . $row["id_cantante"]) .
+                                    "</option>";
                             }
+                        } else {
+                            echo "<option value='' disabled>Nessun cantante trovato</option>";
+                        }
                         ?>
                     </select>
                 </div>
@@ -187,10 +192,12 @@
                         Elimina
                     </button>
                 </div>
-                
-                <p class="text-muted text-center mt-3">Nota: Id canzone è da mettere solo in caso si aggiunge una canzone</p>
 
-                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" class="btn btn-secondary btn-block mt-3">Torna alla Home</a>
+                <p class="text-muted text-center mt-3">Nota: Id canzone è da mettere solo in caso si aggiunge una
+                    canzone</p>
+
+                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);"
+                    class="btn btn-secondary btn-block mt-3">Torna alla Home</a>
             </form>
         </div>
     </div>
@@ -198,6 +205,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pzjw8f+ua7Kw1TIq0V93FGtS+MKV1w4vmgQDKY4i2+fS3yyTupknDO3dzVgSpxAd"
         crossorigin="anonymous"></script>
+
+    <script>
+        function isValidTimeFormat(str) {
+            const regex = /^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$/;
+            return regex.test(str);
+        }
+
+        function validateTimeFormat(input) {
+            if (isValidTimeFormat(input.value)) {
+                input.classList.remove("invalid");
+            } else {
+                input.classList.add("invalid");
+            }
+        }
+    </script>
 </body>
 
 </html>

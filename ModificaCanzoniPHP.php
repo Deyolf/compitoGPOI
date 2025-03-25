@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = isset($_POST['action']) ? $_POST['action'] : '';
     $stmt = null;
 
-    if($id_cantante <= 0) {
+    if ($id_cantante <= 0) {
         die("ID cantante non valido.");
     }
 
@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($action == "add") {
             // Per l'inserimento, l'ID canzone è opzionale
             $id_canzone = !empty($_POST['id_canzone']) ? intval($_POST['id_canzone']) : null;
-            
+
             if ($id_canzone) {
-                $stmt = $conn->prepare("INSERT INTO canzone (id_canzone, cantante, titolo, orario) VALUES (?, ?, ?, ?)"); 
+                $stmt = $conn->prepare("INSERT INTO canzone (id_canzone, cantante, titolo, orario) VALUES (?, ?, ?, ?)");
                 $stmt->bind_param("ssss", $id_canzone, $id_cantante, $titolo, $orario);
             } else {
                 $stmt = $conn->prepare("INSERT INTO canzone (cantante, titolo, orario) VALUES (?, ?, ?)");

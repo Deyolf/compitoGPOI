@@ -152,28 +152,25 @@
                     <input type="text" class="form-control" id="numero_posto" name="numero_posto" required>
                 </div>
 
-
-
-                
                 <button type="submit" name="action" value="insert" class="btn btn-success mb-1">
-                        <i class="bi bi-file-diff"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Aggiungi</a>
+                    <i class="bi bi-file-diff"></i>
+                    <a href="GestisciPrenotazioni.php" class="text-white">Aggiungi</a>
                 </button>
                 <button type="submit" name="action" value="update" class="btn btn-primary mb-1">
-                        <i class="bi bi-file-diff"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Modifica</a>
+                    <i class="bi bi-file-diff"></i>
+                    <a href="GestisciPrenotazioni.php" class="text-white">Modifica</a>
                 </button>
                 <button type="submit" name="action" value="delete" class="btn btn-danger mb-1">
-                        <i class="bi bi-file-earmark-minus"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Elimina</a>
+                    <i class="bi bi-file-earmark-minus"></i>
+                    <a href="GestisciPrenotazioni.php" class="text-white">Elimina</a>
                 </button>
-                
+
                 <p class="text-muted text-center mt-3">Nota: I campi sono obbligatori.</p>
 
-               
-                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); " class="btn btn-secondary btn-block mt-1">Torna alla Home</a>
-                
-                
+                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); "
+                    class="btn btn-secondary btn-block mt-1">Torna alla Home</a>
+
+
             </form>
         </div>
     </div>

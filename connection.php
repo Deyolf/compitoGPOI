@@ -1,8 +1,7 @@
 <?php
 
-$conn = new mysqli("localhost", "root", "root", "evento_musicale" );
+$conn = new mysqli("localhost", "root", "", "evento_musicale");
 
-if($conn -> connect_error)
+if ($conn->connect_error)
     die("Connection error " . $connect_error);
-
 ?>

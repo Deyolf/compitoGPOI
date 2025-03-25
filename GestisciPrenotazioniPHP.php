@@ -4,7 +4,7 @@ require("connection.php"); // Connessione al database
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_prenotazione = htmlspecialchars($_POST['id_prenotazione']);
     $utente = htmlspecialchars($_POST['utente']);
-    $numero_posto =htmlspecialchars($_POST['numero_posto']);
+    $numero_posto = htmlspecialchars($_POST['numero_posto']);
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     if ($action == "insert") {

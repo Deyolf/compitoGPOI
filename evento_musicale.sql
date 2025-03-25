@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Creato il: Mar 25, 2025 alle 17:14
--- Versione del server: 5.7.11
--- Versione PHP: 5.6.18
+-- Host: 127.0.0.1
+-- Creato il: Mar 25, 2025 alle 21:51
+-- Versione del server: 10.4.32-MariaDB
+-- Versione PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,14 +33,16 @@ CREATE TABLE `cantante` (
   `cognome` varchar(100) NOT NULL,
   `data_nascita` date NOT NULL,
   `soprannome` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `cantante`
 --
 
 INSERT INTO `cantante` (`id_cantante`, `nome`, `cognome`, `data_nascita`, `soprannome`) VALUES
-(1, 'Fabio', 'Colombo', '2006-11-20', 'ElFabito');
+(1, 'Marco', 'Rossi', '1990-05-14', 'Red'),
+(2, 'Luca', 'Bianchi', '1985-08-22', 'White'),
+(3, 'Giulia', 'Verdi', '1992-11-30', 'Green');
 
 -- --------------------------------------------------------
 
@@ -50,7 +53,7 @@ INSERT INTO `cantante` (`id_cantante`, `nome`, `cognome`, `data_nascita`, `sopra
 CREATE TABLE `cantante_canzone` (
   `id_cantante` int(11) NOT NULL,
   `id_canzone` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -61,9 +64,17 @@ CREATE TABLE `cantante_canzone` (
 CREATE TABLE `canzone` (
   `id_canzone` int(11) NOT NULL,
   `titolo` varchar(30) NOT NULL,
-  `orario` date NOT NULL,
+  `orario` time NOT NULL,
   `cantante` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `canzone`
+--
+
+INSERT INTO `canzone` (`id_canzone`, `titolo`, `orario`, `cantante`) VALUES
+(123, 'mai domani', '12:35:00', 1),
+(133, 'mai domani', '12:13:22', 2);
 
 -- --------------------------------------------------------
 
@@ -78,7 +89,7 @@ CREATE TABLE `evento` (
   `posti_totali` int(11) NOT NULL,
   `posti_disponibili` int(11) NOT NULL,
   `posti_occupati` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -89,7 +100,16 @@ CREATE TABLE `evento` (
 CREATE TABLE `genere` (
   `id_genere` int(11) NOT NULL,
   `nome` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `genere`
+--
+
+INSERT INTO `genere` (`id_genere`, `nome`) VALUES
+(1, 'Pop'),
+(2, 'Rock'),
+(3, 'Jazz');
 
 -- --------------------------------------------------------
 
@@ -101,7 +121,7 @@ CREATE TABLE `prenotazioni` (
   `id_prenotazione` int(11) NOT NULL,
   `numero_posto` varchar(10) NOT NULL,
   `utente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -122,7 +142,7 @@ CREATE TABLE `utente` (
   `civico` int(11) DEFAULT NULL,
   `IBAN` varchar(20) DEFAULT NULL,
   `telefono` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indici per le tabelle scaricate
@@ -161,22 +181,27 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `cantante`
 --
 ALTER TABLE `cantante`
-  MODIFY `id_cantante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cantante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT per la tabella `canzone`
 --
 ALTER TABLE `canzone`
-  MODIFY `id_canzone` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_canzone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+
 --
 -- AUTO_INCREMENT per la tabella `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
   MODIFY `id_prenotazione` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
   MODIFY `id_utente` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

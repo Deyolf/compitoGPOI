@@ -139,7 +139,7 @@
         <div class="card">
             <h1 class="text-primary">Evento</h1>
             <form action="GestisciEventoPHP.php" method="POST">
-            <div class="mb-3">
+                <div class="mb-3">
                     <label for="ide" class="form-label">ID evento</label>
                     <input type="text" class="form-control" id="ide" name="ide" required>
                 </div>
@@ -164,28 +164,25 @@
                     <input type="text" class="form-control" id="Posti-occ" name="Posti-occ" required>
                 </div>
 
-
-
-
                 <button type="submit" name="action" value="insert" class="btn btn-success mb-1">
-                        <i class="bi bi-file-diff"></i>
-                        <a href="GestisciEventoPHP.php" class="text-white">Aggiungi</a>
+                    <i class="bi bi-file-diff"></i>
+                    <a href="GestisciEventoPHP.php" class="text-white">Aggiungi</a>
                 </button>
                 <button type="submit" name="action" value="update" class="btn btn-primary mb-1">
-                        <i class="bi bi-file-diff"></i>
-                        <a href="GestisciEventoPHP.php" class="text-white">Modifica</a>
+                    <i class="bi bi-file-diff"></i>
+                    <a href="GestisciEventoPHP.php" class="text-white">Modifica</a>
                 </button>
                 <button type="submit" name="action" value="delete" class="btn btn-danger mb-1">
-                        <i class="bi bi-file-earmark-minus"></i>
-                        <a href="GestisciEventoPHP.php" class="text-white">Elimina</a>
+                    <i class="bi bi-file-earmark-minus"></i>
+                    <a href="GestisciEventoPHP.php" class="text-white">Elimina</a>
                 </button>
-                
+
                 <p class="text-muted text-center mt-3">Nota: I campi sono obbligatori.</p>
 
-               
-                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); " class="btn btn-secondary btn-block mt-1">Torna alla Home</a>
-                
-                </form>
+                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); "
+                    class="btn btn-secondary btn-block mt-1">Torna alla Home</a>
+
+            </form>
         </div>
     </div>
 
