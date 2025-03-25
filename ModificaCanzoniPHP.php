@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titolo = htmlspecialchars($_POST['titolo']);
     $orario = htmlspecialchars($_POST['orario']);
     $action = isset($_POST['action']) ? $_POST['action'] : '';
+    $stmt = null
 
     if ($id_cantante <= 0) {
         die("ID cantante non valido.");
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_canzone = !empty($_POST['id_canzone']) ? intval($_POST['id_canzone']) : null;
             
             if ($id_canzone) {
-                $stmt = $conn->prepare("INSERT INTO canzone (id_canzone, id_cantante, titolo, orario) VALUES (?, ?, ?, ?)");
+                $stmt = $conn->prepare("INSERT INTO canzone (id_canzone, id_cantante, titolo, orario) VALUES (?, ?, ?, ?)"); 
                 $stmt->bind_param("iiss", $id_canzone, $id_cantante, $titolo, $orario);
             } else {
                 $stmt = $conn->prepare("INSERT INTO canzone (id_cantante, titolo, orario) VALUES (?, ?, ?)");
