@@ -7,9 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titolo = htmlspecialchars($_POST['titolo']);
     $orario = htmlspecialchars($_POST['orario']);
     $action = isset($_POST['action']) ? $_POST['action'] : '';
-    $stmt = null
+    $stmt = null;
 
-    if ($id_cantante <= 0) {
+    if($id_cantante <= 0) {
         die("ID cantante non valido.");
     }
 
@@ -19,20 +19,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_canzone = !empty($_POST['id_canzone']) ? intval($_POST['id_canzone']) : null;
             
             if ($id_canzone) {
-                $stmt = $conn->prepare("INSERT INTO canzone (id_canzone, id_cantante, titolo, orario) VALUES (?, ?, ?, ?)"); 
-                $stmt->bind_param("iiss", $id_canzone, $id_cantante, $titolo, $orario);
+                $stmt = $conn->prepare("INSERT INTO canzone (id_canzone, cantante, titolo, orario) VALUES (?, ?, ?, ?)"); 
+                $stmt->bind_param("ssss", $id_canzone, $id_cantante, $titolo, $orario);
             } else {
-                $stmt = $conn->prepare("INSERT INTO canzone (id_cantante, titolo, orario) VALUES (?, ?, ?)");
-                $stmt->bind_param("iss", $id_cantante, $titolo, $orario);
+                $stmt = $conn->prepare("INSERT INTO canzone (cantante, titolo, orario) VALUES (?, ?, ?)");
+                $stmt->bind_param("sss", $id_cantante, $titolo, $orario);
             }
         } else if ($action == "update") {
             $id_canzone = intval($_POST['id_canzone']);
-            $stmt = $conn->prepare("UPDATE canzone SET titolo = ?, orario = ?, id_cantante = ? WHERE id_canzone = ?");
-            $stmt->bind_param("ssii", $titolo, $orario, $id_cantante, $id_canzone);
+            $stmt = $conn->prepare("UPDATE canzone SET titolo = ?, orario = ?, cantante = ? WHERE id_canzone = ?");
+            $stmt->bind_param("ssss", $titolo, $orario, $id_cantante, $id_canzone);
         } else if ($action == "delete") {
             $id_canzone = intval($_POST['id_canzone']);
             $stmt = $conn->prepare("DELETE FROM canzone WHERE id_canzone = ?");
-            $stmt->bind_param("i", $id_canzone);
+            $stmt->bind_param("s", $id_canzone);
         } else {
             throw new Exception("Azione non valida.");
         }
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Reindirizzamento dopo l'operazione riuscita
-        header("Location: canzoni.php");
+        header("Location: index.php");
         exit();
 
     } catch (Exception $e) {

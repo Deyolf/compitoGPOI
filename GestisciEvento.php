@@ -138,7 +138,11 @@
     <div class="container">
         <div class="card">
             <h1 class="text-primary">Evento</h1>
-            <form action="GestisciPrenotazioniPHP.php" method="POST">
+            <form action="GestisciEventoPHP.php" method="POST">
+            <div class="mb-3">
+                    <label for="ide" class="form-label">ID evento</label>
+                    <input type="text" class="form-control" id="ide" name="ide" required>
+                </div>
                 <div class="mb-3">
                     <label for="Data" class="form-label">Data</label>
                     <input type="date" class="form-control" id="Data" name="Data" required>
@@ -151,16 +155,37 @@
                     <label for="Posti" class="form-label">Posti Totali</label>
                     <input type="text" class="form-control" id="Posti" name="Posti" required>
                 </div>
+                <div class="mb-3">
+                    <label for="Posti-dis" class="form-label">Posti disponibili</label>
+                    <input type="text" class="form-control" id="Posti-dis" name="Posti-dis" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Posti-tocc" class="form-label">Posti occupati</label>
+                    <input type="text" class="form-control" id="Posti-occ" name="Posti-occ" required>
+                </div>
 
+
+
+
+                <button type="submit" name="action" value="insert" class="btn btn-success mb-1">
+                        <i class="bi bi-file-diff"></i>
+                        <a href="GestisciEventoPHP.php" class="text-white">Aggiungi</a>
+                </button>
                 <button type="submit" name="action" value="update" class="btn btn-primary mb-1">
                         <i class="bi bi-file-diff"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Applica</a>
+                        <a href="GestisciEventoPHP.php" class="text-white">Modifica</a>
+                </button>
+                <button type="submit" name="action" value="delete" class="btn btn-danger mb-1">
+                        <i class="bi bi-file-earmark-minus"></i>
+                        <a href="GestisciEventoPHP.php" class="text-white">Elimina</a>
                 </button>
                 
                 <p class="text-muted text-center mt-3">Nota: I campi sono obbligatori.</p>
 
+               
                 <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); " class="btn btn-secondary btn-block mt-1">Torna alla Home</a>
-            </form>
+                
+                </form>
         </div>
     </div>
 
