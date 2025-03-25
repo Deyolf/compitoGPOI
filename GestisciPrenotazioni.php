@@ -141,17 +141,24 @@
             <form action="GestisciPrenotazioniPHP.php" method="POST">
                 <div class="mb-3">
                     <label for="Nome" class="form-label">ID Prenotazione</label>
-                    <input type="text" class="form-control" id="Nome" name="Nome" required>
+                    <input type="text" class="form-control" id="id_prenotazione" name="id_prenotazione" required>
                 </div>
                 <div class="mb-3">
                     <label for="Indirizzo" class="form-label">ID Utente</label>
-                    <input type="text" class="form-control" id="Indirizzo" name="Indirizzo" required>
+                    <input type="text" class="form-control" id="utente" name="utente" required>
                 </div>
                 <div class="mb-3">
-                    <label for="Telefono" class="form-label">Zona</label>
-                    <input type="text" class="form-control" id="Telefono" name="Telefono" required>
+                    <label for="Indirizzo" class="form-label">N_Posto</label>
+                    <input type="text" class="form-control" id="numero_posto" name="numero_posto" required>
                 </div>
 
+
+
+                
+                <button type="submit" name="action" value="insert" class="btn btn-success mb-1">
+                        <i class="bi bi-file-diff"></i>
+                        <a href="GestisciPrenotazioni.php" class="text-white">Aggiungi</a>
+                </button>
                 <button type="submit" name="action" value="update" class="btn btn-primary mb-1">
                         <i class="bi bi-file-diff"></i>
                         <a href="GestisciPrenotazioni.php" class="text-white">Modifica</a>

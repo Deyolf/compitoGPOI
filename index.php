@@ -133,6 +133,11 @@
                         <!-- Gestione location e data e altro eventualmente -->
                         <a href="GestisciEvento.php" class="text-white">Evento</a>
                     </button>
+                    <button class="btn btn-warning mb-3">
+                        <i class="bi bi-fullscreen"></i>
+                        <!-- Visualizza Programma -->
+                        <a href="VisualizzaProgramma.php" class="text-white">Visualizza</a>
+                    </button>
                 </div>
             </div>
         </div>

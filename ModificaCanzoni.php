@@ -116,18 +116,18 @@
             font-size: 0.9em;
         }
 
-        /* Margine tra il pulsante e gli input */
-        .btn-success {
-            margin-top: 15px;
-        }
-
-        /* Spaziatura tra gli input e il pulsante */
+        /* Aggiunto maggiore spazio dopo il select */
         .mb-3 {
-            margin-bottom: 20px;
-            /* Maggiore spaziatura tra input */
+            margin-bottom: 30px;
         }
 
-        /* Aggiungi uno spazio tra il form e la card */
+        /* Sistemato spazio per i pulsanti */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .card {
             padding: 40px;
         }
@@ -138,37 +138,59 @@
     <div class="container">
         <div class="card">
             <h1 class="text-primary">Canzoni</h1>
-            <form action="GestisciPrenotazioniPHP.php" method="POST">
+            <form action="ModificaCanzoniPHP.php" method="POST">
                 <div class="mb-3">
-                    <label for="Nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="Nome" name="Nome" required>
+                    <label for="Nome" class="form-label">ID Canzone</label>
+                    <input type="text" class="form-control" id="id_canzone" name="id_canzone">
                 </div>
                 <div class="mb-3">
-                    <label for="Indirizzo" class="form-label">Indirizzo</label>
-                    <input type="text" class="form-control" id="Indirizzo" name="Indirizzo" required>
+                    <label for="Nome" class="form-label">Titolo</label>
+                    <input type="text" class="form-control" id="titolo" name="titolo" required>
                 </div>
                 <div class="mb-3">
-                    <label for="Telefono" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" id="Telefono" name="Telefono" required>
+                    <label for="Indirizzo" class="form-label">Orario</label>
+                    <input type="text" class="form-control" id="orario" name="orario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cantante" class="form-label">Cantante</label>
+                    <select class="form-control" name="cantante" id="cantante" required>
+                        <option value="" disabled selected>Seleziona un cantante</option>
+                        <?php
+                            require_once("connection.php");
+                            
+                            $result = $conn->query("SELECT id_cantante, nome, cognome FROM cantante");
+
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='" . htmlspecialchars($row["id_cantante"]) . "'>" . 
+                                        htmlspecialchars($row["nome"] . " " . $row["cognome"] ." - " . $row["id_cantante"]) . 
+                                        "</option>";
+                                }
+                            } else {
+                                echo "<option value='' disabled>Nessun cantante trovato</option>";
+                            }
+                        ?>
+                    </select>
                 </div>
 
-
-                <button type="submit" name="action" value="add" class="btn btn-success mb-1">
+                <div class="btn-group">
+                    <button type="submit" name="action" value="add" class="btn btn-success">
                         <i class="bi bi-file-earmark-plus"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Aggiungi</a>
-                </button>
-                <button type="submit" name="action" value="update" class="btn btn-primary mb-1">
+                        Aggiungi
+                    </button>
+                    <button type="submit" name="action" value="update" class="btn btn-primary">
                         <i class="bi bi-file-diff"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Modifica</a>
-                </button>
-                <button type="submit" name="action" value="delete" class="btn btn-danger mb-1">
+                        Modifica
+                    </button>
+                    <button type="submit" name="action" value="delete" class="btn btn-danger">
                         <i class="bi bi-file-earmark-minus"></i>
-                        <a href="GestisciPrenotazioni.php" class="text-white">Elimina</a>
-                </button>
+                        Elimina
+                    </button>
+                </div>
                 
-                <p class="text-muted text-center mt-3">Nota: I campi sono obbligatori.</p>
+                <p class="text-muted text-center mt-3">Nota: Id canzone è da mettere solo in caso si aggiunge una canzone</p>
 
-                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); " class="btn btn-secondary btn-block mt-1">Torna alla Home</a>
+                <a href="index.php" style="box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" class="btn btn-secondary btn-block mt-3">Torna alla Home</a>
             </form>
         </div>
     </div>
