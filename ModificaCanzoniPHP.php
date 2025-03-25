@@ -24,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = $conn->prepare("INSERT INTO canzone (id_cantante, titolo, orario) VALUES (?, ?, ?)");
                 $stmt->bind_param("iss", $id_cantante, $titolo, $orario);
             }
-        } elseif ($action == "update") {
+        } else if ($action == "update") {
             $id_canzone = intval($_POST['id_canzone']);
             $stmt = $conn->prepare("UPDATE canzone SET titolo = ?, orario = ?, id_cantante = ? WHERE id_canzone = ?");
             $stmt->bind_param("ssii", $titolo, $orario, $id_cantante, $id_canzone);
-        } elseif ($action == "delete") {
+        } else if ($action == "delete") {
             $id_canzone = intval($_POST['id_canzone']);
             $stmt = $conn->prepare("DELETE FROM canzone WHERE id_canzone = ?");
             $stmt->bind_param("i", $id_canzone);
