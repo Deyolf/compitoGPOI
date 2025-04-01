@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Reindirizzamento dopo l'operazione riuscita
-        header("Location: index.php");
+        header("Location: ModificaCanzoni.php");
         exit();
 
     } catch (Exception $e) {
